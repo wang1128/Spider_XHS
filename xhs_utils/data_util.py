@@ -244,8 +244,6 @@ def save_note_detail(note, path):
         f.write(f"上传时间: {note['upload_time']}\n")
         f.write(f"ip归属地: {note['ip_location']}\n")
 
-
-
 @retry(tries=3, delay=1)
 def download_note(note_info, path):
     note_id = note_info['note_id']
@@ -270,7 +268,14 @@ def download_note(note_info, path):
         download_media(save_path, 'video', note_info['video_addr'], 'video')
     return save_path
 
-
 def check_and_create_path(path):
     if not os.path.exists(path):
         os.makedirs(path)
+
+# 新增序列化函数
+def serialize_note_info(note_info):
+    return json.dumps(note_info)
+
+# 新增反序列化函数
+def deserialize_note_info(note_info_str):
+    return json.loads(note_info_str)
