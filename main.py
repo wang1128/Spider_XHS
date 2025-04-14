@@ -137,8 +137,8 @@ if __name__ == '__main__':
         :param note_type 笔记类型 0:全部, 1:视频, 2:图文
         返回搜索的结果
     """
-    query = "瑜伽"
-    query_num = 10
+    query = "留学"
+    query_num =  3
     sort = "general"
     note_type = 1
     data_spider.spider_some_search_note(query, query_num, cookies_str, base_path, 'all', sort, note_type)
