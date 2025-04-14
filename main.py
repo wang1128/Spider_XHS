@@ -84,8 +84,7 @@ class Data_Spider():
                         logger.debug(f"\n{'=' * 30}\n处理用户笔记ID: {note.get('note_id', 'unknown')}")
 
                         # 获取点赞数
-                        note_card = note.get('note_card', {})
-                        interact_info = note_card.get('interact_info', {})
+                        interact_info = note.get('interact_info', {})
                         liked_count_str = interact_info.get('liked_count', '0')
 
                         # 转换处理
@@ -209,33 +208,33 @@ if __name__ == '__main__':
     data_spider = Data_Spider()
 
     # 示例1: 搜索下载（设置min_likes=100）
-    search_queries = ["健康食谱"]
-    for query in search_queries:
-        logger.info(f"\n{'#' * 30}\n开始处理搜索词: {query}")
-        data_spider.spider_some_search_note(
-            query=query,
-            require_num=20,
-            cookies_str=cookies_str,
-            base_path=base_path,
-            save_choice='all',
-            sort="general",
-            note_type=1,
-            min_likes=100  # 设置点赞阈值
-        )
-
-    # 示例2: 用户主页下载（设置min_likes=50）
-    # users = [
-    #     'https://www.xiaohongshu.com/user/profile/67a332a2000000000d008358'
-    # ]
-    # for user_url in users:
-    #     logger.info(f"\n{'#' * 30}\n开始处理用户主页: {user_url}")
-    #     data_spider.spider_user_all_note(
-    #         user_url=user_url,
+    # search_queries = ["健康食谱"]
+    # for query in search_queries:
+    #     logger.info(f"\n{'#' * 30}\n开始处理搜索词: {query}")
+    #     data_spider.spider_some_search_note(
+    #         query=query,
+    #         require_num=20,
     #         cookies_str=cookies_str,
     #         base_path=base_path,
     #         save_choice='all',
-    #         min_likes=50  # 设置点赞阈值
+    #         sort="general",
+    #         note_type=1,
+    #         min_likes=100  # 设置点赞阈值
     #     )
-    #
-    # conn.close()
-    # logger.success("所有任务处理完成！")
+
+    # 示例2: 用户主页下载（设置min_likes=50）
+    users = [
+        'https://www.xiaohongshu.com/user/profile/5f08450b000000000101dc15?xsec_token=ABZocRwyzF6OvGirfHVv451r7_fbBGoVEG0HB34bM1my8=&xsec_source=pc_feed'
+    ]
+    for user_url in users:
+        logger.info(f"\n{'#' * 30}\n开始处理用户主页: {user_url}")
+        data_spider.spider_user_all_note(
+            user_url=user_url,
+            cookies_str=cookies_str,
+            base_path=base_path,
+            save_choice='all',
+            min_likes=1000  # 设置点赞阈值
+        )
+
+    conn.close()
+    logger.success("所有任务处理完成！")
