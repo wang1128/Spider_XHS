@@ -3,7 +3,7 @@ from loguru import logger
 from apis.pc_apis import XHS_Apis
 from xhs_utils.common_utils import init
 from xhs_utils.data_util import handle_note_info, download_note, save_to_xlsx
-
+import time
 
 class Data_Spider():
     def __init__(self):
@@ -41,6 +41,7 @@ class Data_Spider():
             raise ValueError('excel_name 不能为空')
         note_list = []
         for note_url in notes:
+            time.sleep(3)
             success, msg, note_info = self.spider_note(note_url, cookies_str, proxies)
             if note_info is not None and success:
                 note_list.append(note_info)
@@ -116,18 +117,28 @@ if __name__ == '__main__':
     # save_choice: all: 保存所有的信息, media: 保存视频和图片, excel: 保存到excel
     # save_choice 为 excel 或者 all 时，excel_name 不能为空
     # 1
-    notes = [
-        r'https://www.xiaohongshu.com/explore/67d7c713000000000900e391?xsec_token=AB1ACxbo5cevHxV_bWibTmK8R1DDz0NnAW1PbFZLABXtE=&xsec_source=pc_user',
-    ]
-    data_spider.spider_some_note(notes, cookies_str, base_path, 'all', 'test')
+    # notes = [
+    #     r'https://www.xiaohongshu.com/explore/67d7c713000000000900e391?xsec_token=AB1ACxbo5cevHxV_bWibTmK8R1DDz0NnAW1PbFZLABXtE=&xsec_source=pc_user',
+    # ]
+    # data_spider.spider_some_note(notes, cookies_str, base_path, 'all', 'test')
+    #
+    # # 2
+    # user_url = 'https://www.xiaohongshu.com/user/profile/67a332a2000000000d008358?xsec_token=ABTf9yz4cLHhTycIlksF0jOi1yIZgfcaQ6IXNNGdKJ8xg=&xsec_source=pc_feed'
+    # data_spider.spider_user_all_note(user_url, cookies_str, base_path, 'all')
 
-    # 2
-    user_url = 'https://www.xiaohongshu.com/user/profile/67a332a2000000000d008358?xsec_token=ABTf9yz4cLHhTycIlksF0jOi1yIZgfcaQ6IXNNGdKJ8xg=&xsec_source=pc_feed'
-    data_spider.spider_user_all_note(user_url, cookies_str, base_path, 'all')
-
-    # 3
-    query = "榴莲"
+    # 3 note_type 笔记类型 0:全部, 1:视频, 2:图文
+    """
+        指定数量搜索笔记，设置排序方式和笔记类型和笔记数量
+        :param query 搜索的关键词
+        :param require_num 搜索的数量
+        :param cookies_str 你的cookies
+        :param base_path 保存路径
+        :param sort 排序方式 general:综合排序, time_descending:时间排序, popularity_descending:热度排序
+        :param note_type 笔记类型 0:全部, 1:视频, 2:图文
+        返回搜索的结果
+    """
+    query = "瑜伽"
     query_num = 10
     sort = "general"
-    note_type = 0
+    note_type = 1
     data_spider.spider_some_search_note(query, query_num, cookies_str, base_path, 'all', sort, note_type)
