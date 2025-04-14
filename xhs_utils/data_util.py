@@ -262,6 +262,10 @@ def download_note(note_info, path):
     save_note_detail(note_info, save_path)
     if note_type == '图集':
         for img_index, img_url in enumerate(note_info['image_list']):
+            # 跳过Live图
+            if "live" in img_url.lower():
+                print(f"跳过Live图: {img_url}")
+                continue
             download_media(save_path, f'image_{img_index}', img_url, 'image')
     elif note_type == '视频':
         download_media(save_path, 'cover', note_info['video_cover'], 'image')

@@ -209,32 +209,46 @@ if __name__ == '__main__':
 
     # 示例1: 搜索下载（设置min_likes=100）
     # search_queries = ["健康食谱"]
-    # for query in search_queries:
-    #     logger.info(f"\n{'#' * 30}\n开始处理搜索词: {query}")
-    #     data_spider.spider_some_search_note(
-    #         query=query,
-    #         require_num=20,
-    #         cookies_str=cookies_str,
-    #         base_path=base_path,
-    #         save_choice='all',
-    #         sort="general",
-    #         note_type=1,
-    #         min_likes=100  # 设置点赞阈值
-    #     )
-
-    # 示例2: 用户主页下载（设置min_likes=50）
-    users = [
-        'https://www.xiaohongshu.com/user/profile/5f08450b000000000101dc15?xsec_token=ABZocRwyzF6OvGirfHVv451r7_fbBGoVEG0HB34bM1my8=&xsec_source=pc_feed'
+    search_queries = [
+        "考公万能六项框架"
+        ,  # 基于网页1的高分结构化方法论[1](@ref)
+        "申论80分写作模板",  # 网页1/5均强调申论模板重要性[1,5](@ref)
+        "行测正确率提升技巧",  # 网页6/7高频提及的痛点需求[6,7](@ref)
+        "省考乡村振兴案例",  # 网页1中山东等省考重点方向[1](@ref)
+        "考公资料免费领取",  # 网页2/3/5用户引流核心路径[2,3,5](@ref)
+        "面试考官视角解析",  # 网页4/5强调的差异化内容[4,5](@ref)
+        "公考网课对比测评",  # 网页3/6关于网课选择的核心需求[3,6](@ref)
+        "考公作息时间表",  # 网页1/6提到的精细化时间管理[1,6](@ref)
+        "事业单位备考攻略",  # 网页3/5涉及的拓展考试类型[3,5](@ref)
+        "考公心理调适方法"  # 网页7/4提及的备考心态问题[4,7](@ref)
     ]
-    for user_url in users:
-        logger.info(f"\n{'#' * 30}\n开始处理用户主页: {user_url}")
-        data_spider.spider_user_all_note(
-            user_url=user_url,
+    # 0: 全部, 1: 视频, 2: 图文
+    for query in search_queries:
+        logger.info(f"\n{'#' * 30}\n开始处理搜索词: {query}")
+        data_spider.spider_some_search_note(
+            query=query,
+            require_num=30,
             cookies_str=cookies_str,
             base_path=base_path,
             save_choice='all',
-            min_likes=1000  # 设置点赞阈值
+            sort="general",
+            note_type=0,
+            min_likes=150  # 设置点赞阈值
         )
 
+    # 示例2: 用户主页下载（设置min_likes=50）
+    # users = [
+    #     'https://www.xiaohongshu.com/user/profile/5f08450b000000000101dc15?xsec_token=ABZocRwyzF6OvGirfHVv451r7_fbBGoVEG0HB34bM1my8=&xsec_source=pc_feed'
+    # ]
+    # for user_url in users:
+    #     logger.info(f"\n{'#' * 30}\n开始处理用户主页: {user_url}")
+    #     data_spider.spider_user_all_note(
+    #         user_url=user_url,
+    #         cookies_str=cookies_str,
+    #         base_path=base_path,
+    #         save_choice='all',
+    #         min_likes=1000  # 设置点赞阈值
+    #     )
+
     conn.close()
-    logger.success("所有任务处理完成！")
+    logger.success("所有任务处理完成")
