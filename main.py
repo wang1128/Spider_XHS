@@ -1,25 +1,26 @@
 import os
 import sqlite3
+import random
 from loguru import logger
 from apis.pc_apis import XHS_Apis
 from xhs_utils.common_utils import init
 from xhs_utils.data_util import handle_note_info, download_note, save_to_xlsx
 import time
+import sys
 
 # 初始化数据库连接
 conn = sqlite3.connect('downloaded_notes.db')
 c = conn.cursor()
-# 创建表
 c.execute('''CREATE TABLE IF NOT EXISTS downloaded_notes
              (url TEXT PRIMARY KEY, note_info TEXT)''')
 conn.commit()
+
 
 class Data_Spider():
     def __init__(self):
         self.xhs_apis = XHS_Apis()
 
     def spider_note(self, note_url: str, cookies_str: str, proxies=None):
-        # 检查是否已经下载过
         c.execute("SELECT note_info FROM downloaded_notes WHERE url =?", (note_url,))
         result = c.fetchone()
         if result:
@@ -34,7 +35,6 @@ class Data_Spider():
                 note_info = note_info['data']['items'][0]
                 note_info['url'] = note_url
                 note_info = handle_note_info(note_info)
-                # 将下载信息存入数据库
                 c.execute("INSERT INTO downloaded_notes VALUES (?,?)", (note_url, str(note_info)))
                 conn.commit()
         except Exception as e:
@@ -43,12 +43,15 @@ class Data_Spider():
         logger.info(f'爬取笔记信息 {note_url}: {success}, msg: {msg}')
         return success, msg, note_info
 
-    def spider_some_note(self, notes: list, cookies_str: str, base_path: dict, save_choice: str, excel_name: str = '', proxies=None):
+    def spider_some_note(self, notes: list, cookies_str: str, base_path: dict, save_choice: str, excel_name: str = '',
+                         proxies=None):
         if (save_choice == 'all' or save_choice == 'excel') and excel_name == '':
             raise ValueError('excel_name 不能为空')
         note_list = []
         for note_url in notes:
-            time.sleep(3)
+            sleep_time = random.randint(2, 8)
+            time.sleep(sleep_time)
+            logger.info(f"休眠 {sleep_time} 秒模拟真人操作")
             success, msg, note_info = self.spider_note(note_url, cookies_str, proxies)
             if note_info is not None and success:
                 note_list.append(note_info)
@@ -59,64 +62,180 @@ class Data_Spider():
             file_path = os.path.abspath(os.path.join(base_path['excel'], f'{excel_name}.xlsx'))
             save_to_xlsx(note_list, file_path)
 
-    def spider_user_all_note(self, user_url: str, cookies_str: str, base_path: dict, save_choice: str, excel_name: str = '', proxies=None):
+    def spider_user_all_note(self, user_url: str, cookies_str: str, base_path: dict, save_choice: str,
+                             excel_name: str = '', proxies=None, min_likes=10):
         note_list = []
         try:
+            # 用户目录处理
+            user_id = user_url.split('/')[-1].split('?')[0]
+            user_media_dir = os.path.join(base_path['media'], f"user_{user_id}")
+            os.makedirs(user_media_dir, exist_ok=True)
+            user_excel_dir = os.path.join(base_path['excel'], f"user_{user_id}")
+            os.makedirs(user_excel_dir, exist_ok=True)
+            base_path_user = {'media': user_media_dir, 'excel': user_excel_dir}
+
+            # 获取用户笔记
             success, msg, all_note_info = self.xhs_apis.get_user_all_notes(user_url, cookies_str, proxies)
             if success:
-                logger.info(f'用户 {user_url} 作品数量: {len(all_note_info)}')
+                filtered_notes = []
+                for note in all_note_info:
+                    try:
+                        # 调试日志
+                        logger.debug(f"\n{'=' * 30}\n处理用户笔记ID: {note.get('note_id', 'unknown')}")
+
+                        # 获取点赞数
+                        note_card = note.get('note_card', {})
+                        interact_info = note_card.get('interact_info', {})
+                        liked_count_str = interact_info.get('liked_count', '0')
+
+                        # 转换处理
+                        try:
+                            liked_count = int(liked_count_str)
+                        except ValueError:
+                            logger.warning(f"无效点赞数值: {liked_count_str}, 笔记ID: {note.get('note_id')}")
+                            liked_count = 0
+
+                        logger.debug(f"用户笔记点赞数: {liked_count} (阈值: {min_likes})")
+
+                        if liked_count > min_likes:
+                            filtered_notes.append(note)
+                            logger.debug("✅ 保留用户笔记")
+                        else:
+                            logger.debug("❌ 过滤用户笔记")
+                    except Exception as e:
+                        logger.error(f"处理用户笔记异常: {str(e)}")
+                        continue
+
+                all_note_info = filtered_notes
+                logger.info(f'用户 {user_url} 有效作品数量（点赞>{min_likes}）: {len(all_note_info)}')
+
+                # 生成笔记URL
                 for simple_note_info in all_note_info:
                     note_url = f"https://www.xiaohongshu.com/explore/{simple_note_info['note_id']}?xsec_token={simple_note_info['xsec_token']}"
                     note_list.append(note_url)
-            if save_choice == 'all' or save_choice == 'excel':
-                excel_name = user_url.split('/')[-1].split('?')[0]
-            self.spider_some_note(note_list, cookies_str, base_path, save_choice, excel_name, proxies)
+
+            # 调用下载
+            if save_choice in ['all', 'excel']:
+                excel_name = user_id
+            self.spider_some_note(note_list, cookies_str, base_path_user, save_choice, excel_name, proxies)
+
+            # 随机休眠
+            sleep_time = random.randint(2, 10)
+            logger.info(f"用户主页下载完成，休眠 {sleep_time} 秒")
+            time.sleep(sleep_time)
+
         except Exception as e:
-            success = False
-            msg = e
-        logger.info(f'爬取用户所有视频 {user_url}: {success}, msg: {msg}')
+            logger.error(f"用户主页处理异常: {str(e)}")
         return note_list, success, msg
 
-    def spider_some_search_note(self, query: str, require_num: int, cookies_str: str, base_path: dict, save_choice: str, sort="general", note_type=0,  excel_name: str = '', proxies=None):
+    def spider_some_search_note(self, query: str, require_num: int, cookies_str: str, base_path: dict, save_choice: str,
+                                sort="general", note_type=0, excel_name: str = '', proxies=None, min_likes=10):
         note_list = []
         try:
-            success, msg, notes = self.xhs_apis.search_some_note(query, require_num, cookies_str, sort, note_type, proxies)
+            # 搜索目录处理
+            search_media_dir = os.path.join(base_path['media'], query)
+            os.makedirs(search_media_dir, exist_ok=True)
+            search_excel_dir = os.path.join(base_path['excel'], query)
+            os.makedirs(search_excel_dir, exist_ok=True)
+            base_path_search = {'media': search_media_dir, 'excel': search_excel_dir}
+
+            # 执行搜索
+            success, msg, notes = self.xhs_apis.search_some_note(query, require_num, cookies_str, sort, note_type,
+                                                                 proxies)
             if success:
-                notes = list(filter(lambda x: x['model_type'] == "note", notes))
-                logger.info(f'搜索关键词 {query} 笔记数量: {len(notes)}')
+                filtered_notes = []
+                for note in notes:
+                    try:
+                        logger.debug(f"\n{'=' * 30}\n处理搜索笔记ID: {note.get('id', 'unknown')}")
+
+                        # 类型检查
+                        if note.get('model_type') != "note":
+                            logger.debug(f"非笔记类型: {note.get('model_type')}")
+                            continue
+
+                        # 获取点赞数
+                        note_card = note.get('note_card', {})
+                        interact_info = note_card.get('interact_info', {})
+                        liked_count_str = interact_info.get('liked_count', '0')
+
+                        # 类型转换
+                        try:
+                            liked_count = int(liked_count_str)
+                        except ValueError:
+                            logger.warning(f"无效点赞数值: {liked_count_str}, 笔记ID: {note.get('id')}")
+                            liked_count = 0
+
+                        logger.debug(f"搜索笔记点赞数: {liked_count} (阈值: {min_likes})")
+
+                        # 过滤逻辑
+                        if liked_count > min_likes:
+                            filtered_notes.append(note)
+                            logger.debug("✅ 保留搜索笔记")
+                        else:
+                            logger.debug("❌ 过滤搜索笔记")
+                    except Exception as e:
+                        logger.error(f"处理搜索笔记异常: {str(e)}")
+                        continue
+
+                notes = filtered_notes
+                logger.info(f'搜索 {query} 有效笔记数量（点赞>{min_likes}）: {len(notes)}')
+
+                # 生成笔记URL
                 for note in notes:
                     note_url = f"https://www.xiaohongshu.com/explore/{note['id']}?xsec_token={note['xsec_token']}"
                     note_list.append(note_url)
-            if save_choice == 'all' or save_choice == 'excel':
+
+            # 调用下载
+            if save_choice in ['all', 'excel']:
                 excel_name = query
-            self.spider_some_note(note_list, cookies_str, base_path, save_choice, excel_name, proxies)
+            self.spider_some_note(note_list, cookies_str, base_path_search, save_choice, excel_name, proxies)
+
+            # 随机休眠
+            sleep_time = random.randint(2, 10)
+            logger.info(f"搜索下载完成，休眠 {sleep_time} 秒")
+            time.sleep(sleep_time)
+
         except Exception as e:
-            success = False
-            msg = e
-        logger.info(f'搜索关键词 {query} 笔记: {success}, msg: {msg}')
+            logger.error(f"搜索处理异常: {str(e)}")
         return note_list, success, msg
 
+
 if __name__ == '__main__':
+    # 配置日志
+    logger.remove()
+    logger.add(sys.stderr, level="DEBUG")  # 设置为DEBUG级别查看详细信息
+
     cookies_str, base_path = init()
     data_spider = Data_Spider()
-    # save_choice: all: 保存所有的信息, media: 保存视频和图片, excel: 保存到excel
-    # save_choice 为 excel 或者 all 时，excel_name 不能为空
-    # 1
-    notes = [
-        r'https://www.xiaohongshu.com/explore/65f2ea72000000000d00fe39?xsec_token=AB-rT2HcVv4gnSfeFBPdpOLLJCq96N37Gr9E3iKu2XSYI=',
-    ]
-    data_spider.spider_some_note(notes, cookies_str, base_path, 'all', 'test')
-    #
-    # # 2
-    # user_url = 'https://www.xiaohongshu.com/user/profile/67a332a2000000000d008358?xsec_token=ABTf9yz4cLHhTycIlksF0jOi1yIZgfcaQ6IXNNGdKJ8xg=&xsec_source=pc_feed'
-    # data_spider.spider_user_all_note(user_url, cookies_str, base_path, 'all')
 
-    # 3 note_type 笔记类型 0:全部, 1:视频, 2:图文
-    # query = "留学"
-    # query_num =  3
-    # sort = "general"
-    # note_type = 1
-    # data_spider.spider_some_search_note(query, query_num, cookies_str, base_path, 'all', sort, note_type)
+    # 示例1: 搜索下载（设置min_likes=100）
+    search_queries = ["健康食谱"]
+    for query in search_queries:
+        logger.info(f"\n{'#' * 30}\n开始处理搜索词: {query}")
+        data_spider.spider_some_search_note(
+            query=query,
+            require_num=20,
+            cookies_str=cookies_str,
+            base_path=base_path,
+            save_choice='all',
+            sort="general",
+            note_type=1,
+            min_likes=100  # 设置点赞阈值
+        )
+
+    # 示例2: 用户主页下载（设置min_likes=50）
+    # users = [
+    #     'https://www.xiaohongshu.com/user/profile/67a332a2000000000d008358'
+    # ]
+    # for user_url in users:
+    #     logger.info(f"\n{'#' * 30}\n开始处理用户主页: {user_url}")
+    #     data_spider.spider_user_all_note(
+    #         user_url=user_url,
+    #         cookies_str=cookies_str,
+    #         base_path=base_path,
+    #         save_choice='all',
+    #         min_likes=50  # 设置点赞阈值
+    #     )
     #
-    # # 关闭数据库连接
     # conn.close()
+    # logger.success("所有任务处理完成！")
