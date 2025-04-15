@@ -31,4 +31,3 @@ venv.bak/
 .env
 /datas/
 /.idea
-downloaded_notes.db

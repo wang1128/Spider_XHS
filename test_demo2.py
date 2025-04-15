@@ -11,6 +11,7 @@ def test_user_crawler_with_status(
         server_port: int = 8080
 ):
     """参数化的用户爬虫测试"""
+    # 构建请求参数
     payload = {
         "user_url": user_url,
         "save_choice": save_choice,
@@ -18,6 +19,7 @@ def test_user_crawler_with_status(
     }
 
     try:
+        # 提交任务
         response = requests.post(
             f"http://localhost:{server_port}/api/crawl_user",
             json=payload,
@@ -35,6 +37,7 @@ def test_user_crawler_with_status(
     print(f"用户URL: {user_url}")
     print(f"任务ID: {task_info['task_id']}")
 
+    # 轮询状态
     start_time = time.time()
     while time.time() - start_time < timeout:
         try:
@@ -44,6 +47,7 @@ def test_user_crawler_with_status(
             )
             status = status_res.json()
 
+            # 打印实时状态
             status_msg = (
                 f"\r[进度 {status.get('progress', 0)}%] "
                 f"成功: {status.get('success', 0)} "
@@ -63,6 +67,7 @@ def test_user_crawler_with_status(
     #     print("\n⌛ 任务超时")
     #     return None
 
+    # 打印最终结果
     print("\n\n=== 最终状态 ===")
     print(json.dumps(status, indent=2, ensure_ascii=False))
     return status
@@ -78,10 +83,8 @@ def test_search_with_status(
         timeout: int = 300,
         server_port: int = 8080
 ):
-    """参数化的搜索测试（支持笔记类型）"""
-    if note_type not in [0, 1, 2]:
-        raise ValueError("无效笔记类型：0-全部 1-视频 2-图文")
-
+    """参数化的搜索测试"""
+    # 构建请求参数
     payload = {
         "query": query,
         "require_num": require_num,
@@ -107,9 +110,9 @@ def test_search_with_status(
     task_info = response.json()
     print(f"\n=== 搜索测试启动 ===")
     print(f"搜索词: {query}")
-    print(f"笔记类型: {['全部', '视频', '图文'][note_type]}")
     print(f"任务ID: {task_info['task_id']}")
 
+    # 轮询状态
     start_time = time.time()
     while time.time() - start_time < timeout:
         try:
@@ -119,6 +122,7 @@ def test_search_with_status(
             )
             status = status_res.json()
 
+            # 打印实时状态
             status_msg = (
                 f"\r[进度 {status.get('progress', 0)}%] "
                 f"成功: {status.get('success', 0)} "
@@ -138,70 +142,48 @@ def test_search_with_status(
     #     print("\n⌛ 任务超时")
     #     return None
 
+    # 打印最终结果
     print("\n\n=== 最终状态 ===")
     print(json.dumps(status, indent=2, ensure_ascii=False))
-
-    # 验证笔记类型
-    if status["status"] == "completed":
-        actual_types = set()
-        for item in status.get("details", []):
-            if item.get("type"):
-                actual_types.add(item["type"])
-        print(f"\n验证结果: 实际获取的笔记类型 - {', '.join(actual_types) or '无'}")
-
     return status
 
 
 if __name__ == "__main__":
-    # 用户测试示例
+    # 示例测试用例
+    #            :param query 搜索的关键词
+    #             :param cookies_str 你的cookies
+    #             :param page 搜索的页数
+    #             :param sort 排序方式 general:综合排序, time_descending:时间排序, popularity_descending:热度排序
+    #             :param note_type 笔记类型 0:全部, 1:视频, 2:图文
+    #             返回搜索的结果
     user_test_params = {
-        "user_url": "https://www.xiaohongshu.com/user/profile/63fec5ff000000002a008e2c",
-        "min_likes": 1000,
+        "user_url": "https://www.xiaohongshu.com/user/profile/56567b99b8c8b46b10592003?xsec_token=ABz4Rtqy2RzGNNtDm0Xt-QjxFSUML9uKgioMyY11yaXMM%3D&xsec_source=pc_search",
+        "min_likes": 100,
         "timeout": 600
+        # ,  # 延长超时时间
+        # "note_type": 1
     }
 
-    # 读取关键词文件
-    search_test_cases = []
-    keyword_file = "关键词.txt"  # 文件路径可修改
+    """
+        指定数量搜索笔记，设置排序方式和笔记类型和笔记数量
+        :param query 搜索的关键词
+        :param require_num 搜索的数量
+        :param cookies_str 你的cookies
+        :param sort 排序方式 general:综合排序, time_descending:时间排序, popularity_descending:热度排序
+        :param note_type 笔记类型 0:全部, 1:视频, 2:图文
+        返回搜索的结果
+    """
 
-    try:
-        with open(keyword_file, "r", encoding="utf-8") as f:
-            for line in f:
-                # 清洗和验证关键词
-                keyword = line.strip()
-                if keyword:  # 忽略空行
-                    search_test_cases.append({
-                        "query": keyword,
-                        "require_num": 100,
-                        "min_likes": 150,
-                        "note_type": 0,
-                        "desc": f"关键词: {keyword}"
-                    })
-        print(f"成功加载 {len(search_test_cases)} 个关键词")
-    except Exception as e:
-        print(f"文件读取失败: {str(e)}")
-        exit()
+    search_test_params = {
+        "query": "公务员考试",
+        "require_num": 30,
+        "min_likes": 200,
+        "sort": "general"  # 测试热门排序
+    }
 
-    # 执行测试套件
+    # 执行测试
     print("\n" + "=" * 50)
-    # test_user_crawler_with_status(**user_test_params)  # 可选用户测试
+    test_user_crawler_with_status(**user_test_params)
 
-    import random
-    import time
-
-    for index, case in enumerate(search_test_cases, 1):
-        print(f"\n{'=' * 50}\n正在处理第 {index}/{len(search_test_cases)} 个关键词: {case['query']}")
-
-        # 执行搜索测试
-        test_search_with_status(
-            query=case["query"],
-            require_num=case["require_num"],
-            min_likes=case["min_likes"],
-            note_type=case["note_type"]
-        )
-
-        # 随机等待
-        if index != len(search_test_cases):  # 最后一个不需要等待
-            wait_time = random.randint(60, 180)  # 1-3分钟
-            print(f"\n🕒 任务 {index} 完成，开始休息 {wait_time} 秒...")
-            time.sleep(wait_time)
+    # print("\n" + "=" * 50)
+    # test_search_with_status(**search_test_params)

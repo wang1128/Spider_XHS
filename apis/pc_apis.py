@@ -448,7 +448,7 @@ class XHS_Apis():
             msg = str(e)
         return success, msg, res_json
 
-    def search_some_note(self, query: str, require_num: int, cookies_str: str, sort="general", note_type=0, proxies: dict = None):
+    def search_some_note(self, query: str, require_num: int, cookies_str: str, sort="popularity_descending", note_type=0, proxies: dict = None):
         """
             指定数量搜索笔记，设置排序方式和笔记类型和笔记数量
             :param query 搜索的关键词
