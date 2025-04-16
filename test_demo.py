@@ -162,7 +162,7 @@ if __name__ == "__main__":
 
     # 读取关键词文件
     search_test_cases = []
-    keyword_file = "关键词.txt"  # 文件路径可修改
+    keyword_file = "关键词2.txt"  # 文件路径可修改
 
     try:
         with open(keyword_file, "r", encoding="utf-8") as f:
@@ -172,8 +172,8 @@ if __name__ == "__main__":
                 if keyword:  # 忽略空行
                     search_test_cases.append({
                         "query": keyword,
-                        "require_num": 100,
-                        "min_likes": 150,
+                        "require_num": 50,
+                        "min_likes": 200,
                         "note_type": 0,
                         "desc": f"关键词: {keyword}"
                     })
@@ -201,7 +201,7 @@ if __name__ == "__main__":
         )
 
         # 随机等待
-        if index != len(search_test_cases):  # 最后一个不需要等待
-            wait_time = random.randint(60, 180)  # 1-3分钟
-            print(f"\n🕒 任务 {index} 完成，开始休息 {wait_time} 秒...")
-            time.sleep(wait_time)
+        # if index != len(search_test_cases):  # 最后一个不需要等待
+        #     wait_time = random.randint(60, 80)  # 1-3分钟
+        #     print(f"\n🕒 任务 {index} 完成，开始休息 {wait_time} 秒...")
+        #     time.sleep(wait_time)

@@ -43,8 +43,14 @@ cookies_str, base_path = init()
 # 任务状态存储
 task_status = defaultdict(dict)
 
+SLEEP_TIME = 120
+
+
 
 class FlaskDataSpider:
+    pic_count = 0
+    video_count = 0
+
     def __init__(self):
         self.xhs_apis = XHS_Apis()
         self.liked_regex = re.compile(r"^(\d+\.?\d*)([万万千]?)")
@@ -83,6 +89,13 @@ class FlaskDataSpider:
             logger.info(f"正在保存: {note_type}")
             download_note(note_info, save_path)
             logger.info(f"媒体文件已保存到: {save_path}")
+            if note_type == '视频':
+                self.video_count += 1
+                logger.info(f"已经保存: {self.video_count} 视频")
+            else:
+                self.pic_count += 1
+                logger.info(f"已经保存: {self.pic_count} 图文")
+
         except Exception as e:
             logger.error(f"媒体文件保存失败: {str(e)}")
 
@@ -107,6 +120,11 @@ class FlaskDataSpider:
                 logger.info(f'笔记 {note_url} 已存在')
                 return True, '笔记已存在', None
 
+            # 添加随机休眠
+            sleep_time = random.randint(SLEEP_TIME, SLEEP_TIME + 30)
+            time.sleep(sleep_time)
+            logger.info(f'休眠 {sleep_time} ！！！！！')
+
             success, msg, note_info = self.xhs_apis.get_note_info(note_url, cookies_str, proxies)
             if success:
                 note_info = note_info['data']['items'][0]
@@ -121,8 +139,6 @@ class FlaskDataSpider:
                 # 保存媒体文件
                 self._save_media_files(note_info, save_path)
 
-                # 添加随机休眠
-                time.sleep(random.randint(1, 3))
 
             return success, msg, note_info
         except Exception as e:
