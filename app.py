@@ -43,7 +43,7 @@ cookies_str, base_path = init()
 # 任务状态存储
 task_status = defaultdict(dict)
 
-SLEEP_TIME = 120
+SLEEP_TIME =  40
 
 
 
@@ -113,6 +113,7 @@ class FlaskDataSpider:
         """处理单个笔记爬取并保存"""
         conn = self._get_db_connection()
         note_info = None
+        logger.info(f'开始爬 {note_url} ！！！！！')
         try:
             c = conn.cursor()
             c.execute("SELECT note_info FROM downloaded_notes WHERE url=?", (note_url,))
@@ -121,9 +122,10 @@ class FlaskDataSpider:
                 return True, '笔记已存在', None
 
             # 添加随机休眠
-            sleep_time = random.randint(SLEEP_TIME, SLEEP_TIME + 30)
-            time.sleep(sleep_time)
+            sleep_time = random.randint(SLEEP_TIME, SLEEP_TIME + 10)
             logger.info(f'休眠 {sleep_time} ！！！！！')
+            time.sleep(sleep_time)
+
 
             success, msg, note_info = self.xhs_apis.get_note_info(note_url, cookies_str, proxies)
             if success:
