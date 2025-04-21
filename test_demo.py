@@ -2,7 +2,7 @@ import requests
 import time
 import json
 
-TIME_OUT = 3000
+TIME_OUT = 3000000
 
 def test_user_crawler_with_status(
         user_url: str,

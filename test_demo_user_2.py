@@ -2,14 +2,14 @@ import requests
 import time
 import json
 
-TIME_OUT = 3000
+TIME_OUT = 3000000
 
 
 def test_user_crawler_with_status(
         user_url: str,
         save_choice: str = "all",
         min_likes: int = 1,  # 固定参数
-        timeout: int = 3000,  # 固定参数
+        timeout: int = 90000,  # 固定参数
         server_port: int = 8080
 ):
     """用户爬虫测试（参数已固定）"""
@@ -23,7 +23,7 @@ def test_user_crawler_with_status(
         response = requests.post(
             f"http://localhost:{server_port}/api/crawl_user",
             json=payload,
-            timeout=60
+            timeout=30
         )
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
@@ -57,7 +57,7 @@ def test_user_crawler_with_status(
             if status["status"] in ["completed", "failed"]:
                 break
 
-            time.sleep(220)
+            time.sleep(5)
         except requests.exceptions.RequestException as e:
             print(f"\n⚠️ 状态查询异常: {str(e)}")
             time.sleep(5)

@@ -116,7 +116,12 @@ class FlaskDataSpider:
         logger.info(f'开始爬 {note_url} ！！！！！')
         try:
             c = conn.cursor()
-            c.execute("SELECT note_info FROM downloaded_notes WHERE url=?", (note_url,))
+            rewrite_url = re.sub(r'\?xsec_token=.*', '', note_url)
+            sql_sentence = "SELECT note_info FROM downloaded_notes WHERE url like '%"+ rewrite_url+ "%'"
+            c.execute(sql_sentence)
+
+            logger.info(f' {sql_sentence} ')
+
             if c.fetchone():
                 logger.info(f'笔记 {note_url} 已存在')
                 return True, '笔记已存在', None
@@ -134,8 +139,9 @@ class FlaskDataSpider:
                 note_info = handle_note_info(note_info)
 
                 # 保存到数据库
+                rewrite_url = re.sub(r'\?xsec_token=.*', '', note_url)
                 c.execute("INSERT INTO downloaded_notes VALUES (?,?)",
-                          (note_url, str(note_info)))
+                          (rewrite_url, str(note_info)))
                 conn.commit()
 
                 # 保存媒体文件
