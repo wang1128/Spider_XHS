@@ -49,7 +49,7 @@ class Data_Spider():
             raise ValueError('excel_name 不能为空')
         note_list = []
         for note_url in notes:
-            sleep_time = random.randint(2, 8)
+            sleep_time = random.randint(2, 3)
             time.sleep(sleep_time)
             logger.info(f"休眠 {sleep_time} 秒模拟真人操作")
             success, msg, note_info = self.spider_note(note_url, cookies_str, proxies)

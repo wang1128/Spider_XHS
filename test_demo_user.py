@@ -3,12 +3,13 @@ import time
 import json
 
 TIME_OUT = 3000
+MIN_LIKE = 500
 
 
 def test_user_crawler_with_status(
         user_url: str,
         save_choice: str = "all",
-        min_likes: int = 1,  # 固定参数
+        min_likes: int = MIN_LIKE,  # 固定参数
         timeout: int = 60000,  # 固定参数
         server_port: int = 8080
 ):
@@ -98,6 +99,10 @@ if __name__ == "__main__":
 
         # 调用爬虫函数（参数已固化在函数定义中）
         test_user_crawler_with_status(user_url=url)
+        print('完成')
+
+        # 在这里加 转换 wav，识别，和输出 pdf 的逻辑
+
 
         # 添加间隔（可选）
         if idx != len(user_urls):

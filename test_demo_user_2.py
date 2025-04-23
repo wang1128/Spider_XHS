@@ -3,12 +3,13 @@ import time
 import json
 
 TIME_OUT = 3000000
+MIN_LIKE = 500
 
 
 def test_user_crawler_with_status(
         user_url: str,
         save_choice: str = "all",
-        min_likes: int = 1,  # 固定参数
+        min_likes: int = MIN_LIKE,  # 固定参数
         timeout: int = 90000,  # 固定参数
         server_port: int = 8080
 ):
