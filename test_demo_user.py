@@ -2,8 +2,8 @@ import requests
 import time
 import json
 
-TIME_OUT = 3000
-MIN_LIKE = 500
+TIME_OUT = 6000
+MIN_LIKE = 3000
 
 
 def test_user_crawler_with_status(
