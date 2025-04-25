@@ -6,8 +6,6 @@ import threading
 import uuid
 import re
 from collections import defaultdict
-
-import requests
 from flask import Flask, request, jsonify
 from loguru import logger
 from pathlib import Path
@@ -16,10 +14,6 @@ from xhs_utils.common_utils import init
 from xhs_utils.data_util import handle_note_info, download_note, save_to_xlsx
 import time
 import sys
-import requests
-import time
-from typing import Dict
-import os
 
 # 初始化Flask应用
 app = Flask(__name__)
@@ -49,19 +43,17 @@ cookies_str, base_path = init()
 # 任务状态存储
 task_status = defaultdict(dict)
 
-SLEEP_TIME =  10
+SLEEP_TIME =  30
 
 
 
 class FlaskDataSpider:
     pic_count = 0
     video_count = 0
-    VIDEO_EXTS = ('mp4', 'avi', 'mov', 'mkv', 'flv', 'wmv')
 
     def __init__(self):
         self.xhs_apis = XHS_Apis()
         self.liked_regex = re.compile(r"^(\d+\.?\d*)([万万千]?)")
-        self.task_status = defaultdict(dict)  # 初始化实例属性
 
     def _get_db_connection(self):
         """获取线程安全的数据库连接"""
@@ -163,19 +155,18 @@ class FlaskDataSpider:
         finally:
             conn.close()
 
-    def spider_user_notes(self, task_id: str, user_url: str, save_choice: str, min_likes: int, proxies: Dict = None):
-        """处理用户所有笔记并串联后续处理流程"""
+    def spider_user_notes(self, task_id, user_url, save_choice, min_likes, proxies=None):
+        """处理用户所有笔记"""
         try:
             # 初始化任务状态
-            self.task_status[task_id] = {
+            task_status[task_id] = {
                 "status": "processing",
                 "progress": 0,
                 "total": 0,
                 "success": 0,
                 "failed": 0,
                 "details": [],
-                "current_url": None,
-                "asr_task_id": None  # 语音识别任务ID
+                "current_url": None
             }
 
             # 创建用户目录
@@ -184,17 +175,13 @@ class FlaskDataSpider:
             user_excel_dir = os.path.join(base_path['excel'], f"user_{user_id}")
             excel_path = os.path.join(user_excel_dir, f"user_{user_id}_notes.xlsx")
 
-            # 创建必要目录
-            os.makedirs(user_media_dir, exist_ok=True)
-            os.makedirs(user_excel_dir, exist_ok=True)
-
             # 获取用户笔记
             success, msg, notes = self.xhs_apis.get_user_all_notes(user_url, cookies_str, proxies)
             if not success:
-                self.task_status[task_id].update({"status": "failed", "message": msg})
+                task_status[task_id].update({"status": "failed", "message": msg})
                 return
 
-            # 过滤低点赞笔记
+            # 过滤笔记
             filtered = []
             for note in notes:
                 liked_str = note.get('interact_info', {}).get('liked_count', '0')
@@ -202,17 +189,16 @@ class FlaskDataSpider:
                 if liked_count > min_likes:
                     filtered.append(note)
 
-            self.task_status[task_id]["total"] = len(filtered)
+            task_status[task_id]["total"] = len(filtered)
             logger.info(f'用户 {user_url} 有效笔记: {len(filtered)}条')
 
-            # 处理笔记下载
+            # 处理笔记并保存
             note_list = []
             for index, note in enumerate(filtered, 1):
                 note_url = None
                 try:
-                    # 构建笔记URL
                     note_url = f"https://www.xiaohongshu.com/explore/{note['note_id']}?xsec_token={note['xsec_token']}"
-                    self.task_status[task_id]["current_url"] = note_url
+                    task_status[task_id]["current_url"] = note_url
 
                     # 下载笔记
                     success, msg, note_info = self.spider_note(note_url, user_media_dir, proxies)
@@ -223,93 +209,43 @@ class FlaskDataSpider:
                         "status": "success" if success else "failed",
                         "message": msg
                     }
-                    self.task_status[task_id]["details"].append(result)
+                    task_status[task_id]["details"].append(result)
 
                     if success:
-                        self.task_status[task_id]["success"] += 1
+                        task_status[task_id]["success"] += 1
                         note_list.append(note_info)
                     else:
-                        self.task_status[task_id]["failed"] += 1
+                        task_status[task_id]["failed"] += 1
 
                     # 更新进度
                     progress = round((index / len(filtered)) * 100, 1)
-                    self.task_status[task_id]["progress"] = progress
+                    task_status[task_id]["progress"] = progress
 
                 except Exception as e:
                     error_msg = f"笔记处理异常: {str(e)}"
                     logger.error(error_msg)
-                    self.task_status[task_id]["details"].append({
+                    task_status[task_id]["details"].append({
                         "url": note_url or "生成URL失败",
                         "status": "failed",
                         "message": error_msg
                     })
-                    self.task_status[task_id]["failed"] += 1
+                    task_status[task_id]["failed"] += 1
 
-            # 保存Excel（根据需求启用）
+            # 保存Excel
             # if save_choice in ['all', 'excel'] and note_list:
             #     self._save_excel_file(note_list, excel_path, f"user_{user_id}")
 
-            # 视频转音频处理流程
-            try:
-                logger.info(f'开始转码')
-                # 调用视频转音频服务（同步等待）
-                convert_url = "http://localhost:8081/convert"
-                response = requests.post(convert_url, json={"path": user_media_dir}, timeout=10)
-
-                if response.status_code != 202:
-                    raise Exception(f"转码服务响应异常: {response.status_code} - {response.text}")
-
-                # 轮询检查转换状态（最长5分钟）
-                max_checks = 30  # 30次 * 10秒 = 300秒
-                for _ in range(max_checks):
-                    all_converted = True
-                    # 遍历所有子目录检查转换状态
-                    for root, _, files in os.walk(user_media_dir):
-                        # 检查是否存在未转换的视频文件
-                        video_files = [f for f in files if f.split('.')[-1].lower() in self.VIDEO_EXTS]
-                        if video_files and 'audio.wav' not in files:
-                            all_converted = False
-                            break
-
-                    if all_converted:
-                        break
-                    time.sleep(10)  # 每10秒检查一次
-                else:
-                    raise Exception("音频转换超时（300秒）")
-
-                # 调用语音识别服务
-                logger.info(f'开始语音识别')
-                asr_url = "http://localhost:8082/tasks"
-                asr_response = requests.post(
-                    asr_url,
-                    json={"input_path": user_media_dir,"priority": 0},
-                    timeout=100
-                )
-
-                if asr_response.status_code != 200:
-                    raise Exception(f"语音识别服务响应异常: {asr_response.status_code} - {asr_response.text}")
-
-                # 记录语音识别任务ID
-                self.task_status[task_id]["asr_task_id"] = asr_response.json().get("task_id")
-
-            except Exception as e:
-                logger.error(f"后处理失败: {str(e)}")
-                self.task_status[task_id].update({
-                    "status": "partial_success",
-                    "message": f"笔记下载完成，但后处理失败: {str(e)}"
-                })
-            finally:
-                # 最终状态更新
-                self.task_status[task_id].update({
-                    "status": "completed",
-                    "message": f"完成 {len(filtered)}条笔记下载（成功{self.task_status[task_id]['success']}条）",
-                    "excel_path": excel_path if save_choice in ['all', 'excel'] else None,
-                    "current_url": None
-                })
+            # 最终状态
+            task_status[task_id].update({
+                "status": "completed",
+                "message": f"完成 {len(filtered)}条笔记下载（成功{task_status[task_id]['success']}条）",
+                "excel_path": excel_path if save_choice in ['all', 'excel'] else None,
+                "current_url": None
+            })
 
         except Exception as e:
             logger.error(f"用户处理异常: {str(e)}")
-            self.task_status[task_id].update({
+            task_status[task_id].update({
                 "status": "failed",
                 "message": str(e),
                 "current_url": None
