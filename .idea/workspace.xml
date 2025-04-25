@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1e1678c-78c3-4878-aced-5617a678553f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/crawl_all_users.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crawl_user_all.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/赛道汇总/IP孵化.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/赛道汇总/商业-创业副业，咨询服务.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/赛道汇总/女性成长.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/赛道汇总/家庭、母婴育儿.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/赛道汇总/职场、人生规划.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/赛道汇总/身心灵、心里疗愈.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawl_user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/crawl_user.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawl_user_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/crawl_user_2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawl_user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/中式养生赛道.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawl_user_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/美业赛道.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/downloaded_notes.db" beforeDir="false" afterPath="$PROJECT_DIR$/downloaded_notes.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_demo_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_demo_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_demo_user_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_demo_user_2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +31,9 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2jxV69ATndatbdMYYNcQVMYnmnN" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -57,6 +60,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/赛道汇总" />
     </key>
   </component>
   <component name="RunManager" selected="Python.crawl_all_users">
