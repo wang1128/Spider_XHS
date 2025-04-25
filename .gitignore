@@ -33,3 +33,4 @@ venv.bak/
 /.idea
 /.idea
 .idea/workspace.xml
+*.xml
