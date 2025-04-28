@@ -8,6 +8,8 @@ try:
     js = execjs.compile(open(r'../static/xhs_xs_xsc_56.js', 'r', encoding='utf-8').read())
 except:
     js = execjs.compile(open(r'static/xhs_xs_xsc_56.js', 'r', encoding='utf-8').read())
+    a = execjs.get().name
+    print(a)
 
 try:
     xray_js = execjs.compile(open(r'../static/xhs_xray.js', 'r', encoding='utf-8').read())
