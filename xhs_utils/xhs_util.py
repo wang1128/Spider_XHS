@@ -1,18 +1,42 @@
+import os
 import json
 import math
 import random
 import execjs
 from xhs_utils.cookie_util import trans_cookies
 
-try:
-    js = execjs.compile(open(r'../static/xhs_xs_xsc_56.js', 'r', encoding='utf-8').read())
-except:
-    js = execjs.compile(open(r'static/xhs_xs_xsc_56.js', 'r', encoding='utf-8').read())
+import execjs
 
+# 确保 execjs 使用 Node.js 运行时
+execjs.runtime_names = ['Node']  # 显式指定运行时
+b = execjs.get().name
+print(f"当前 JS 环境: {b}")  # 调试输出
+
+# 获取当前文件的绝对路径
+current_file_path = os.path.abspath(__file__)
+# 计算项目根目录（假设当前文件在项目根目录下的某个子目录中）
+project_root = os.path.dirname(os.path.dirname(current_file_path))
+# static 目录的绝对路径（与 xhs_utils 平行）
+static_dir = os.path.join(project_root, "static")
+
+# 加载 JS 文件（兼容 Windows 和 macOS）
 try:
-    xray_js = execjs.compile(open(r'../static/xhs_xray.js', 'r', encoding='utf-8').read())
-except:
-    xray_js = execjs.compile(open(r'static/xhs_xray.js', 'r', encoding='utf-8').read())
+    # 1. 加载 xhs_xs_xsc_56.js
+    js_path = os.path.join(static_dir, "xhs_xs_xsc_56.js")
+    with open(js_path, "r", encoding="utf-8") as f:
+        js_code = f.read()
+    js = execjs.compile(js_code)
+    a = execjs.get().name
+    print(execjs.get().name)
+
+    # 2. 加载 xhs_xray.js
+    xray_js_path = os.path.join(static_dir, "xhs_xray.js")
+    with open(xray_js_path, "r", encoding="utf-8") as f:
+        xray_js_code = f.read()
+    xray_js = execjs.compile(xray_js_code)
+except Exception as e:
+    raise Exception(f"加载 JS 文件失败，请检查路径: {e}")
+
 
 def generate_x_b3_traceid(len=16):
     x_b3_traceid = ""

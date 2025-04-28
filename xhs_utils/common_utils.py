@@ -8,8 +8,17 @@ def load_env():
     return cookies_str
 
 def init():
+<<<<<<< Updated upstream
     media_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../datas/media_datas'))
     excel_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../datas/excel_datas'))
+=======
+    media_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'G:\\XHS data'))
+    excel_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'G:\\XHS data'))
+    # media_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Volumes/PenghaoMac2/XHS data'))
+    # excel_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Volumes/PenghaoMac2/XHS data'))
+    # media_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Users/penghao/Documents/GitHub/Spider_XHS/datas/media_datas'))
+    # excel_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Users/penghao/Documents/GitHub/Spider_XHS/datas/media_datas'))
+>>>>>>> Stashed changes
     for base_path in [media_base_path, excel_base_path]:
         if not os.path.exists(base_path):
             os.makedirs(base_path)

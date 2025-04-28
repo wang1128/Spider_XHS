@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e1e1678c-78c3-4878-aced-5617a678553f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Spider_XHS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Spider_XHS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apis/.stignore" beforeDir="false" afterPath="$PROJECT_DIR$/apis/.stignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apis/pc_apis.py" beforeDir="false" afterPath="$PROJECT_DIR$/apis/pc_apis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app2.py" beforeDir="false" afterPath="$PROJECT_DIR$/app2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookie" beforeDir="false" afterPath="$PROJECT_DIR$/cookie" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawl_all_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawl_all_users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawl_user_all.txt" beforeDir="false" afterPath="$PROJECT_DIR$/crawl_user_all.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawl_user_old.txt" beforeDir="false" afterPath="$PROJECT_DIR$/crawl_user_old.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/done.txt" beforeDir="false" afterPath="$PROJECT_DIR$/done.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excel/.stignore" beforeDir="false" afterPath="$PROJECT_DIR$/excel/.stignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/icu4c@73.rb" beforeDir="false" afterPath="$PROJECT_DIR$/icu4c@73.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/.stignore" beforeDir="false" afterPath="$PROJECT_DIR$/logs/.stignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/.stignore" beforeDir="false" afterPath="$PROJECT_DIR$/media/.stignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/.stignore" beforeDir="false" afterPath="$PROJECT_DIR$/static/.stignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/xhs_xray.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/xhs_xray.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/xhs_xray_pack1.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/xhs_xray_pack1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/xhs_xray_pack2.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/xhs_xray_pack2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/xhs_xs_xsc_56.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/xhs_xs_xsc_56.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_demo_app2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_demo_app2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_demo_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_demo_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_demo_user_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_demo_user_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhs_utils/.stignore" beforeDir="false" afterPath="$PROJECT_DIR$/xhs_utils/.stignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhs_utils/common_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/xhs_utils/common_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhs_utils/cookie_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/xhs_utils/cookie_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhs_utils/data_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/xhs_utils/data_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhs_utils/xhs_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/xhs_utils/xhs_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/关键词.txt" beforeDir="false" afterPath="$PROJECT_DIR$/关键词.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/关键词2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/关键词2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/已爬取.txt" beforeDir="false" afterPath="$PROJECT_DIR$/已爬取.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/赛道汇总/IP孵化.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/IP孵化.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/赛道汇总/中式养生赛道.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/中式养生赛道.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/赛道汇总/女性成长.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/女性成长.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/赛道汇总/家庭、母婴育儿.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/家庭、母婴育儿.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/赛道汇总/美业赛道.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/美业赛道.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/赛道汇总/职场、人生规划.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/职场、人生规划.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/赛道汇总/身心灵、心里疗愈.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/身心灵、心里疗愈.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2jxV69ATndatbdMYYNcQVMYnmnN" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.app.executor": "Run",
+    "Python.clean_db.executor": "Run",
+    "Python.crawl_all_users.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.test_demo.executor": "Run",
+    "Python.test_demo_app2.executor": "Run",
+    "Python.test_demo_user.executor": "Run",
+    "Python.test_demo_user_2.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/Github/Spider_XHS/backup",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Github\Spider_XHS\backup" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/赛道汇总" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.clean_db">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Spider_XHS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="clean_db" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Spider_XHS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/clean_db.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="crawl_all_users" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Spider_XHS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawl_all_users.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_demo_user" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Spider_XHS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_demo_user.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_demo_user_2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Spider_XHS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_demo_user_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.clean_db" />
+        <item itemvalue="Python.test_demo_user_2" />
+        <item itemvalue="Python.app" />
+        <item itemvalue="Python.crawl_all_users" />
+        <item itemvalue="Python.test_demo_user" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PY-251.23774.444" />
+        <option value="bundled-python-sdk-890ed5b35930-d9c5bdb153f4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.23774.444" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e1e1678c-78c3-4878-aced-5617a678553f" name="Changes" comment="" />
+      <created>1722328536427</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722328536427</updated>
+      <workItem from="1745595982386" duration="7352000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="b6495dd7-4e4a-4e66-b2b5-7507bf961b4f" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="b6495dd7-4e4a-4e66-b2b5-7507bf961b4f">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app.py</url>
+          <line>125</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Spider_XHS$clean_db.coverage" NAME="clean_db Coverage Results" MODIFIED="1745599711493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spider_XHS$test_demo_user_2.coverage" NAME="test_demo_user_2 Coverage Results" MODIFIED="1745598964863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spider_XHS$app.coverage" NAME="app Coverage Results" MODIFIED="1745598954421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
