@@ -74,7 +74,7 @@ if __name__ == "__main__":
     # ==============================
     user_urls = []
     try:
-        with open("crawl_user_2.txt", "r", encoding="utf-8") as f:
+        with open("crawl_user_all.txt", "r", encoding="utf-8") as f:
             for line in f:
                 url = line.strip()
                 if url.startswith("http"):

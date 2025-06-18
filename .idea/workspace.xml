@@ -5,21 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1e1678c-78c3-4878-aced-5617a678553f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/赛道汇总/IP孵化.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/赛道汇总/商业-创业副业，咨询服务.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/赛道汇总/女性成长.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/赛道汇总/家庭、母婴育儿.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/赛道汇总/职场、人生规划.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/赛道汇总/身心灵、心里疗愈.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/move2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/赛道汇总/ip 赛道 0614.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawl_user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/中式养生赛道.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawl_user_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/赛道汇总/美业赛道.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/downloaded_notes.db" beforeDir="false" afterPath="$PROJECT_DIR$/downloaded_notes.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_demo_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_demo_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_demo_user_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_demo_user_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xhs_utils/common_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/xhs_utils/common_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,9 +47,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Python.app.executor": "Run",
+    "Python.app.executor": "Debug",
     "Python.crawl_all_users.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.move2.executor": "Run",
     "Python.test_demo.executor": "Run",
     "Python.test_demo_app2.executor": "Run",
     "Python.test_demo_user.executor": "Run",
@@ -54,7 +61,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/Users/penghao/GitHub/Spider_XHS",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -65,7 +72,7 @@
       <recent name="$PROJECT_DIR$/赛道汇总" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.crawl_all_users">
+  <component name="RunManager" selected="Python.test_demo_user">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Spider_XHS" />
       <option name="ENV_FILES" value="" />
@@ -110,7 +117,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_demo_app2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="move2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Spider_XHS" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -123,7 +130,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_demo_app2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/move2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -178,11 +185,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.crawl_all_users" />
-        <item itemvalue="Python.app" />
-        <item itemvalue="Python.test_demo_user_2" />
         <item itemvalue="Python.test_demo_user" />
-        <item itemvalue="Python.test_demo_app2" />
+        <item itemvalue="Python.app" />
+        <item itemvalue="Python.move2" />
+        <item itemvalue="Python.test_demo_user_2" />
+        <item itemvalue="Python.crawl_all_users" />
       </list>
     </recent_temporary>
   </component>
@@ -208,34 +215,54 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/xhs_utils/xhs_util.py</url>
-          <line>249</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/apis/pc_apis.py</url>
+          <line>184</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apis/pc_apis.py</url>
+          <line>185</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/xhs_utils/xhs_util.py</url>
-          <line>254</line>
-          <option name="timeStamp" value="4" />
+          <line>92</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/xhs_utils/xhs_util.py</url>
-          <line>256</line>
-          <option name="timeStamp" value="5" />
+          <line>94</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/xhs_utils/xhs_util.py</url>
-          <line>257</line>
-          <option name="timeStamp" value="6" />
+          <line>93</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/xhs_utils/xhs_util.py</url>
-          <line>252</line>
-          <option name="timeStamp" value="7" />
+          <line>82</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/xhs_utils/xhs_util.py</url>
-          <line>251</line>
-          <option name="timeStamp" value="8" />
+          <line>83</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/xhs_utils/xhs_util.py</url>
+          <line>85</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/xhs_utils/xhs_util.py</url>
+          <line>86</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app.py</url>
+          <line>173</line>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

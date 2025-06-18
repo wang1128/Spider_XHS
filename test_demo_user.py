@@ -2,8 +2,9 @@ import requests
 import time
 import json
 
-TIME_OUT = 10000
-MIN_LIKE = 500
+TIME_OUT = 10000000
+MIN_LIKE = 20
+TEXT_FILE_NAME = '/Users/penghao/GitHub/Spider_XHS/赛道汇总/ip 赛道 0614.txt'
 
 
 def test_user_crawler_with_status(
@@ -74,7 +75,7 @@ if __name__ == "__main__":
     # ==============================
     user_urls = []
     try:
-        with open("crawl_user.txt", "r", encoding="utf-8") as f:
+        with open(TEXT_FILE_NAME, "r", encoding="utf-8") as f:
             for line in f:
                 url = line.strip()
                 if url.startswith("http"):

@@ -43,7 +43,7 @@ cookies_str, base_path = init()
 # 任务状态存储
 task_status = defaultdict(dict)
 
-SLEEP_TIME =  30
+SLEEP_TIME =  40
 
 
 

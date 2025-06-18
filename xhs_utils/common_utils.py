@@ -10,6 +10,7 @@ def load_env():
     return cookies_str
 
 def init():
+    # 这个很重要！！！！！！！！！ 路径在这里！！！！！！
     media_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Volumes/PenghaoMac2/XHS data'))
     excel_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Volumes/PenghaoMac2/XHS data'))
     # media_base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '/Users/penghao/Documents/GitHub/Spider_XHS/datas/media_datas'))
